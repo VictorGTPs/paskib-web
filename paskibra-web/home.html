@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paskibra Niskala Praja</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="card">
+      <img src="img/logo-niskala.PNG" alt="logo Niskala" class="logo" />
+      <h1 class="judul">PASKIBRA<br />NISKALA PRAJA</h1>
+      <p id="loggedAs" style="text-align: center; margin-top: -10px;"></p>
+      <div class="menu">
+        <button onclick="window.location.href='inputkas.html'">
+          ➕ Kas Paskibra
+        </button>
+        <button onclick="window.location.href='absensi.html'">
+          🕘 Absensi
+        </button>
+        <button onclick="window.location.href='carianggota.html'">
+          🔍 Cari Data Anggota
+        </button>
+        <button>🔐 Request Akun / Rubah Sandi</button>
+        <button>🔁 Rubah Data Anggota</button>
+        <button>📆 KEGIATAN</button>
+        <button>➕ TAMBAH ANGGOTA</button>
+        <button>🚪 OUT ANGGOTA</button>
+        <h2 class="footer">ADMIN PANEL NISKALA PRAJA</h2>
+        <footer class ="footer">
+          <p>&copy; 2025 Niskala Praja</p>
+          <p>Developed by Tim IT Niskala Praja</a></p>
+        </footer>
+      </div>
+    </div>
+    <script>
+  const username = localStorage.getItem("username");
+  const role = localStorage.getItem("role");
+
+  if (username) {
+    document.getElementById("loggedAs").innerText = `Logged As: ${username} (${role})`;
+  } else {
+    // Kalau belum login, arahkan kembali ke halaman login
+    alert("Anda belum login!");
+    window.location.href = "login.html";
+  }
+</script>
+  </body>
+</html>

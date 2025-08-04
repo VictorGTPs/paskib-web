@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Input Kas - Paskibra Niskala Praja</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #1e2a38, #12202b);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #eee;
+        margin: 0;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .card {
+        background-color: #253241;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        padding: 30px 40px;
+        width: 380px;
+      }
+      .logo {
+        display: block;
+        margin: 0 auto 25px;
+        width: 80px;
+        filter: drop-shadow(0 0 6px rgba(57, 183, 127, 0.6));
+      }
+      h1.judul {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.7rem;
+        margin-bottom: 25px;
+        line-height: 1.2;
+        color: #39b77f;
+        text-shadow: 0 0 10px #39b77f99;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      input[type="text"],
+      input[type="number"],
+      input[type="date"] {
+        background-color: #334359;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 14px;
+        color: #eee;
+        font-size: 15px;
+        box-shadow: inset 0 0 5px #1a2431;
+        transition: background-color 0.3s ease;
+      }
+      input[type="text"]:focus,
+      input[type="number"]:focus,
+      input[type="date"]:focus {
+        outline: none;
+        background-color: #3c566e;
+        box-shadow: 0 0 8px #39b77f;
+        color: #d9f7e9;
+      }
+      button[type="submit"] {
+        background-color: #39b77f;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        padding: 14px 0;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px #2da46fcc;
+        transition: background-color 0.25s ease;
+      }
+      button[type="submit"]:hover {
+        background-color: #2da46f;
+      }
+      .back-btn {
+        margin-top: 25px;
+        background-color: #555c66;
+        width: 100%;
+        border: none;
+        padding: 12px 0;
+        border-radius: 10px;
+        font-weight: 600;
+        color: #ddd;
+        cursor: pointer;
+        box-shadow: 0 4px 12px #444a52cc;
+        transition: background-color 0.25s ease;
+      }
+      .back-btn:hover {
+        background-color: #3a4049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1 class="judulinputkas">INPUT KAS</h1>
+      <form id="inputKasForm">
+        <label for="tanggal">Tanggal</label>
+        <input type="date" name="tanggal" required />
+        <label for="jenis">Jenis Kas</label>
+        <select name="jenis" id="jenis" required>
+          <option value="" disabled selected>-- Pilih Jenis --</option>
+          <option value="masuk">Masuk</option>
+          <option value="keluar">Keluar</option>
+        </select>
+        <label for="jumlah">Jumlah</label>
+        <input
+          type="number"
+          name="jumlah"
+          placeholder="Jumlah (Rp)"
+          required
+          min="0"
+        />
+        <button type="submit">Simpan Kas</button>
+      </form>
+      <button onclick="window.location.href='index.html'" class="back-btn">
+        ⬅️ Kembali
+      </button>
+    </div>
+
+    <script>
+      const form = document.getElementById("inputKasForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const jumlah = form.jumlah.value;
+        const jenis = form.jenis.value;
+        const tanggal = form.tanggal.value;
+
+        if (!jenis || !jumlah || !tanggal) {
+          showToast("❗ Mohon isi semua data.");
+          return;
+        }
+        // Menampilkan toast jika semua data lengkap
+        showToast("✅ Data kas berhasil disimpan!");
+        form.reset();
+      });
+
+      // Fungsi toast
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+    </script>
+    <div id="toast" class="toast">Notifikasi</div>
+  </body>
+</html>
